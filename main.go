@@ -3,13 +3,15 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"reflect"
 )
 
 func main() {
 	http.HandleFunc("/", handleRequest)
-	http.ListenAndServe(":8080", nil)
+	log.Fatal(http.ListenAndServe(":8080", nil))
+	fmt.Println("server run")
 }
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
