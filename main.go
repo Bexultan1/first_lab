@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"reflect"
 )
 
 func main() {
@@ -22,7 +23,7 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	if message, ok := data["message"]; ok {
+	if message, ok := data["message"]; ok && reflect.TypeOf(message).Kind() == reflect.String {
 
 		fmt.Println("Получено сообщение от клиента:", message)
 
